@@ -2,7 +2,7 @@
     <div class="container my-3">
         <div class="row justify-content-end position-absolute delete-vault" v-if="account.id == vault.creatorId">
             <div class="col-1">
-                <i class="mdi mdi-delete text-danger selectable fs-5" title="Delete Vault"></i>
+                <i class="mdi mdi-delete text-danger selectable fs-5" title="Delete Vault" @click="DeleteVault(vault.id)"></i>
             </div>
         </div>
         <div class="row">
@@ -30,16 +30,18 @@
 
 
 <script>
-import { computed, onMounted, watchEffect } from 'vue';
+import { computed, onMounted, popScopeId, watchEffect } from 'vue';
 import { AppState } from '../AppState';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import Pop from '../utils/Pop';
 import { vaultsService } from '../services/VaultsService';
 import { keepsService } from '../services/KeepsService';
+import { router } from '../router';
 
 export default {
     setup() {
         const route = useRoute();
+        const router = useRouter();
         async function GetVault() {
             try {
                 const vaultId = route.params.vaultId
@@ -66,7 +68,19 @@ export default {
         return {
             vault: computed(() => AppState.activeVault),
             keeps: computed(() => AppState.keeps),
-            account: computed(() => AppState.account)
+            account: computed(() => AppState.account),
+
+            async DeleteVault(vaultId) {
+                try {
+                    if (await Pop.confirm('Are you sure?')) {
+                        await vaultsService.DeleteVault(vaultId)
+                        Pop.success('Vault was deleted.')
+                        router.push({name:'Home'})
+                    }
+                } catch (error) {
+                    Pop.error(error,'[deleting vault]')
+                }
+            }
         }
     }
 }
