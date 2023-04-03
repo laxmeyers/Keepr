@@ -48,6 +48,7 @@ export default {
                 await vaultsService.getVault(vaultId)
             } catch (error) {
                 Pop.error(error, '[getting vault]')
+                router.push({name:'Home'})
             }
         }
 
