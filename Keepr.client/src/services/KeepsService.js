@@ -23,6 +23,17 @@ class KeepsService {
         const keepIndex = AppState.keeps.findIndex(k => k.id == keepId)
         AppState.keeps.splice(keepIndex, 1)
     }
+
+    async GetProfilesKeeps(profileId) {
+        AppState.keeps = []
+        const res = await api.get('api/profiles/' + profileId + '/keeps')
+        AppState.keeps = res.data
+    }
+
+    async GetVaultKeeps(vaultId) {
+        const res = await api.get('api/vaults/' + vaultId + '/keeps')
+        AppState.keeps = res.data
+    }
 }
 
 export const keepsService = new KeepsService();

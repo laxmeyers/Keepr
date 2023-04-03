@@ -12,7 +12,7 @@
 import Pop from '../utils/Pop';
 import { keepsService } from '../services/KeepsService'
 import { vaultsService } from '../services/VaultsService'
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, watchEffect } from 'vue';
 import { AppState } from '../AppState';
 import KeepsCard from '../components/KeepsCard.vue';
 
@@ -27,16 +27,8 @@ export default {
       }
     }
 
-    async function GetMyVaults() {
-      try {
-        await vaultsService.GetMyVaults();
-      } catch (error) {
-        Pop.error(error, '[Getting my vaults]')
-      }
-    }
     onMounted(() => {
       GetKeeps();
-      GetMyVaults()
     });
     return {
       keeps: computed(() => AppState.keeps)

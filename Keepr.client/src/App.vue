@@ -11,12 +11,25 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, watchEffect } from 'vue'
 import { AppState } from './AppState'
+import {vaultsService} from './services/VaultsService'
 import Navbar from './components/Navbar.vue'
 
 export default {
   setup() {
+    async function GetMyVaults() {
+      try {
+        await vaultsService.GetMyVaults();
+      } catch (error) {
+        Pop.error(error, '[Getting my vaults]')
+      }
+    }
+    watchEffect(() => {
+      if (AppState.account.id) {
+        GetMyVaults();
+      }
+    })
     return {
       appState: computed(() => AppState)
     }

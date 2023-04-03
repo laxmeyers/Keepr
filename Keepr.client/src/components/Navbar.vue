@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <div class="btn-group w-25">
-          <button type="button" class="btn text-light dropdown-toggle" data-bs-toggle="dropdown"
+          <button v-if="account.id" type="button" class="btn text-light dropdown-toggle" data-bs-toggle="dropdown"
             data-bs-display="static" aria-expanded="false">
             Create
           </button>
@@ -36,13 +36,17 @@
 </template>
 
 <script>
+import { computed } from 'vue';
 import CreateVault from './CreateVault.vue';
 import KeepCreate from './KeepCreate.vue';
 import Login from './Login.vue'
 import Modal from './Modal.vue';
+import { AppState } from '../AppState';
 export default {
   setup() {
-    return {}
+    return {
+      account: computed(() => AppState.account)
+    }
   },
   components: { Login, Modal, CreateVault, KeepCreate }
 }

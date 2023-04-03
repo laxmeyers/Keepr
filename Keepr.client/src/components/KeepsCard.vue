@@ -5,11 +5,17 @@
             <h5>{{ keep.name }}</h5>
         </div>
         <div class="position-absolute keep-creator">
-            <img :src="keep.creator.picture" class="rounded-circle profile-img selectable" :title="keep.creator.name"
+            <router-link :to="{name: 'Profile', params: {profileId: keep.creatorId}}">
+                <img :src="keep.creator.picture" class="rounded-circle profile-img selectable" :title="keep.creator.name"
                 alt="">
+            </router-link>
         </div>
-        <div v-if="account.id == keep.creatorId"
+        <div v-if="account.id == keep.creatorId && !keep.vaultKeepId"
             class="position-absolute delete-button bg-danger rounded-circle text-center selectable" title="delete keep" @click="DeleteKeep(keep.id)">
+            <i class="mdi mdi-close"></i>
+        </div>
+        <div v-else-if="keep.vaultKeepId"
+            class="position-absolute delete-button bg-danger rounded-circle text-center selectable" title="Remove from Vault" @click="RemoveFromVault(keep?.vaultKeepId)">
             <i class="mdi mdi-close"></i>
         </div>
     </div>
@@ -27,6 +33,8 @@ import Modal from './Modal.vue';
 import ActiveKeepModal from './activeKeepModal.vue';
 import Pop from '../utils/Pop';
 import { keepsService } from '../services/KeepsService';
+import { RouterLink } from 'vue-router';
+import { vaultKeepsService } from '../services/VaultKeepsService';
 
 
 export default {
@@ -51,10 +59,21 @@ export default {
                 } catch (error) {
                     Pop.error(error, '[deleting a keep]')
                 }
+            },
+
+            async RemoveFromVault(vaultKeepId) {
+                try {
+                    if (await Pop.confirm('Are you sure?')) {
+                        await vaultKeepsService.RemoveFromVault(vaultKeepId)
+                        Pop.success("Successfully removed the keep from your vault.")
+                    }
+                } catch (error) {
+                    Pop.error(error,'[removing keep from vault]')
+                }
             }
         };
     },
-    components: { Modal, ActiveKeepModal }
+    components: { Modal, ActiveKeepModal, RouterLink }
 }
 </script>
 

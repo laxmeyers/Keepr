@@ -94,12 +94,20 @@ namespace Keepr.Repositories
         {
             string sql = @"
             Select 
-            * 
-            from keeps 
-            where creatorId = @profileId;
+            k.*,
+            COUNT(vk.id) as kept,
+            acct.*
+            from keeps k
+            join accounts acct on acct.id = k.creatorId
+            left join vaultKeeps vk on vk.keepId = k.id
+            where k.creatorId = @profileId
+            group by k.id;
             ";
 
-            List<Keep> keeps = _db.Query<Keep>(sql, new { profileId }).ToList();
+            List<Keep> keeps = _db.Query<Keep, Profile, Keep>(sql, (keep, creator) => {
+                keep.Creator = creator;
+                return keep;
+            }, new { profileId }).ToList();
             return keeps;
         }
     }

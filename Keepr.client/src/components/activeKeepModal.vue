@@ -8,7 +8,7 @@
             <div class="col-md-6">
                 <div class="row h-100 align-items-between">
                     <div class="col-12 text-center">
-                        {{keep.views}}<i class="mdi mdi-eye"></i> keeps
+                        {{keep.views}}<i class="mdi mdi-eye"></i> {{ keep.kept }} vault
                     </div>
                     <div class="col-12 d-flex flex-column justify-content-center">
                         <h2 class="text-center">{{ keep.name }}</h2>
@@ -53,6 +53,7 @@ export default {
             async CreateVaultKeep(keepId) {
                 try {
                     await vaultKeepsService.CreateVaultKeep(keepId, editable.value.vaultId)
+                    Pop.success("Added the keep to your vault")
                     editable.value = {}
                 } catch (error) {
                     Pop.error(error.message, '[creating vaultkeep]')
