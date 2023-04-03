@@ -38,7 +38,7 @@ export default {
 
 <style scoped lang="scss">
 .bricks {
-  columns: 300px;
+  columns: 250px;
   column-gap:1em;
 }
 </style>

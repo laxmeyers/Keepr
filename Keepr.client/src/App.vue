@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="elevation-5">
     <Navbar />
   </header>
   <main>
