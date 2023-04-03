@@ -1,6 +1,6 @@
 <template>
     <div class="mb-3 position-relative">
-        <img :src="keep.img" class="img-fluid rounded selectable elevation-5" data-bs-toggle="modal" data-bs-target="#activeKeep" @click="ActiveKeep(keep)" :alt="keep.name">
+        <img :src="keep.img" class="img-fluid rounded selectable elevation-5" data-bs-toggle="modal" data-bs-target="#activeKeep" @click="ActiveKeep(keep.id)" :alt="keep.name">
         <div class="position-absolute keep-title">
             <h5>{{ keep.name }}</h5>
         </div>
@@ -34,9 +34,9 @@ export default {
     setup() {
         return {
             account: computed(() => AppState.account),
-            ActiveKeep(keep) {
+            async ActiveKeep(keepId) {
                 try {
-                    keepsService.ActiveKeep(keep)
+                    await keepsService.ActiveKeep(keepId)
                 } catch (error) {
                     Pop.error(error, '[Setting active keep]')
                 }

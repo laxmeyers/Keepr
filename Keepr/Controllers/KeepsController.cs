@@ -51,6 +51,7 @@ namespace Keepr.Controllers
             try
             {
                 Keep keep = _keepsService.GetKeep(id);
+                _keepsService.AddView(keep);
                 return Ok(keep);
             }
             catch (Exception e)

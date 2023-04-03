@@ -12,9 +12,10 @@ class KeepsService {
         AppState.keeps.push(res.data)
     }
 
-    ActiveKeep(keep) {
+    async ActiveKeep(keepId) {
         AppState.activeKeep = {}
-        AppState.activeKeep = keep
+        const res = await api.get('api/keeps/'+ keepId)
+        AppState.activeKeep = res.data
     }
 
     async DeleteKeep(keepId) {

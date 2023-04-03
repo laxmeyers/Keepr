@@ -8,7 +8,7 @@
             <div class="col-md-6">
                 <div class="row h-100 align-items-between">
                     <div class="col-12 text-center">
-                        views keeps
+                        {{keep.views}}<i class="mdi mdi-eye"></i> keeps
                     </div>
                     <div class="col-12 d-flex flex-column justify-content-center">
                         <h2 class="text-center">{{ keep.name }}</h2>

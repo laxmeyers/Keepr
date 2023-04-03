@@ -4,11 +4,13 @@ namespace Keepr.Services
     {
         private readonly VaultKeepsRepository _repo;
         private readonly VaultsService _vaultsService;
+        private readonly KeepsService _keepsService;
 
-        public VaultKeepsService(VaultKeepsRepository repo, VaultsService vaultsService)
+        public VaultKeepsService(VaultKeepsRepository repo, VaultsService vaultsService, KeepsService keepsService)
         {
             _repo = repo;
             _vaultsService = vaultsService;
+            _keepsService = keepsService;
         }
 
         internal List<VaultKeepSaved> GetKeepsInVault(int vaultId, string userId)
@@ -21,6 +23,7 @@ namespace Keepr.Services
         internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData)
         {
             Vault vault = _vaultsService.GetVault(vaultKeepData.VaultId, vaultKeepData.CreatorId);
+            _keepsService.GetKeep(vaultKeepData.KeepId);
             if (vault.CreatorId != vaultKeepData.CreatorId) throw new Exception("You can't add that here.");
             VaultKeep vaultKeep = _repo.CreateVaultKeep(vaultKeepData);
             return vaultKeep;

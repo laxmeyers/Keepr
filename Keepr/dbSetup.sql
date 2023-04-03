@@ -62,3 +62,40 @@ where vk.vaultId = 11;
 join keeps k on k.id = vk.keepId
 join accounts keepsCreator on keepsCreator.id on k.keepsCreatorId k.*,
 keepsCreator.*;
+
+Select
+    k.*,
+    acct.*,
+    Count(vk.*)
+from keeps k
+    join accounts acct on acct.id = k.creatorId
+    join vaultKeeps vk on vk.keepId = k.id
+where k.id = 55;
+
+Select
+    k.*,
+    COUNT(*) as kept,
+    acct.*
+from keeps k
+    join accounts acct on acct.id = k.creatorId
+    join vaultKeeps vk on vk.keepId = k.id
+where k.id = 55
+group by k.id;
+
+Select k.*, Count(*) as kept
+from keeps k
+    right join vaultKeeps vk on vk.keepId = k.id
+where k.id = 55
+group by k.id;
+
+select * from keeps where id = 75;
+
+Select
+    k.*,
+    COUNT(vk.id) as kept,
+    acct.*
+from keeps k
+    join accounts acct on acct.id = k.creatorId
+    left join vaultKeeps vk on vk.keepId = k.id
+where k.id = 83
+group by k.id;

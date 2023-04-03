@@ -53,6 +53,16 @@ namespace Keepr.Services
             return keep;
         }
 
+        internal void AddView(Keep keep)
+        {
+            keep.Views++;
+            _repo.EditKeep(keep);
+        }
+        // internal void AddKeep(Keep keep){
+        //     keep.Kept++;
+        //     _repo.EditKeep(keep);
+        // }
+
         internal List<Keep> GetProfilesKeeps(string profileId)
         {
             _profilesService.GetProfile(profileId);
