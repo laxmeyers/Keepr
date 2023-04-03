@@ -17,10 +17,12 @@ create Table
         creatorId VARCHAR(255) not null,
         name VARCHAR(100) not NULL,
         description VARCHAR(500) not NULL,
-        img VARCHAR(255) not null,
+        img VARCHAR(500) not null,
         views int not null DEFAULT 0,
         Foreign Key (creatorId) REFERENCES accounts(id) on delete CASCADE
     ) default charset utf8 COMMENT '';
+
+ALTER TABLE keeps MODIFY COLUMN img varchar(500);
 
 DROP table keeps;
 
