@@ -43,4 +43,10 @@ export default {
   columns: 250px;
   column-gap: 1em;
 }
+
+@media (max-width: 575.98px) {
+  .bricks{
+    columns: 150px;
+  }
+ }
 </style>
