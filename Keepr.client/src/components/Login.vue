@@ -9,7 +9,7 @@
         <div type="button" class="bg-dark border-0 selectable no-select" data-bs-toggle="dropdown"
           aria-expanded="false">
           <div v-if="account.picture || user.picture">
-            <img :src="account.picture || user.picture" alt="account photo" height="40" class="rounded-circle" />
+            <img :src="account.picture || user.picture" alt="account photo" height="40" class="rounded-circle profile-pic" />
           </div>
         </div>
         <div class="dropdown-menu dropdown-menu-lg-end p-0" aria-labelledby="authDropdown">
@@ -51,4 +51,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.profile-pic{
+  height: 5vh;
+  width: 5vh;
+  object-fit: cover;
+}
 </style>

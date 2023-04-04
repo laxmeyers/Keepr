@@ -4,7 +4,7 @@
       <div class="col-12 text-center">
         <img :src="profile.coverImg" class="elevation-4 rounded cover-image" alt="">
       </div>
-      <div class="col-md-1 m-auto text-center">
+      <div class="col-md-6 m-auto text-center">
         <img :src="profile.picture" class="rounded-circle profile-image elevation-5" alt="">
       </div>
       <div class="col-12 text-center">
@@ -105,5 +105,8 @@ export default {
 
 .profile-image {
   transform: translateY(-60px);
+  height: 25vh;
+  width: 25vh;
+  object-fit: cover;
 }
 </style>

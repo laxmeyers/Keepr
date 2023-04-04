@@ -94,6 +94,7 @@ export default {
     .profile-img {
         height: 6vh;
         width: 6vh;
+        object-fit: cover;
     }
 }
 
