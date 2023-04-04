@@ -6,15 +6,15 @@
         </div>
         <div class="modal-body">
             <div class="form-floating mb-3">
-                <input v-model="editable.name" type="text" class="form-control" id="floatingInput" placeholder="title" required>
+                <input maxlength=25 v-model="editable.name" type="text" class="form-control" id="floatingInput" placeholder="title" required>
                 <label for="floatingInput">Title</label>
             </div>
             <div class="form-floating">
-                <input v-model="editable.img" type="text" class="form-control" id="floatingPassword" placeholder="image" required>
+                <input maxlength=255 v-model="editable.img" type="text" class="form-control" id="floatingPassword" placeholder="image" required>
                 <label for="floatingPassword">Image URL</label>
             </div>
             <div class="form-floating mt-3">
-                <textarea v-model="editable.description" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" required></textarea>
+                <textarea maxlength=500 v-model="editable.description" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" required></textarea>
                 <label for="floatingTextarea">Description</label>
             </div>
             <div class="form-check mt-3">
