@@ -1,5 +1,4 @@
 <template>
-    <button class="btn-close text-end" data-bs-dismiss="modal" aria-label="Close" title="close"></button>
     <div class="modal-body" v-if="keep.id">
         <div class="row">
             <div class="col-md-6">
@@ -24,7 +23,9 @@
                             <button type="submit" class="btn btn-outline-success ms-1">save</button>
                         </form>
                         <div>
-                            <img :src="keep.creator.picture" class="profile-pic rounded-circle" :alt="keep.creator">
+                            <router-link :to="{name: 'Profile', params: {profileId: keep.creatorId}}">
+                                <img :src="keep.creator.picture" class="profile-pic rounded-circle" :alt="keep.creator" data-bs-dismiss="modal" :title="keep.creator.name">
+                            </router-link>
                             {{ keep.creator.name }}
                         </div>
                     </div>

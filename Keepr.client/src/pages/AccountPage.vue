@@ -1,7 +1,9 @@
 <template>
   <div class="about text-center text-light text-shadow" :style="{backgroundImage: `url(${account.coverImg})`}">
     <h1>Welcome {{ account.name }}</h1>
-    <img class="rounded" :src="account.picture" alt="" />
+    <router-link :to="{name: 'Profile', params: {profileId: account.id}}">
+      <img class="rounded" :src="account.picture" :alt="account.name" :title="account.name" />
+    </router-link>
     <p>{{ account.email }}</p>
   </div>
   <div class="container-fluid">
@@ -48,6 +50,7 @@ export default {
         try {
           const accountData = editable.value
           await accountService.EditAccount(accountData)
+          Pop.success("You have successfully edited your account")
         } catch (error) {
           Pop.error(error,'[Editing account]')
         }

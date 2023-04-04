@@ -76,7 +76,7 @@ export default {
 
             async DeleteVault(vaultId) {
                 try {
-                    if (await Pop.confirm('Are you sure?')) {
+                    if (await Pop.confirm('Are you sure you want to delete the vault?')) {
                         await vaultsService.DeleteVault(vaultId)
                         Pop.success('Vault was deleted.')
                         router.push({name:'Home'})

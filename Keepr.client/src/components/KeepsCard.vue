@@ -53,7 +53,7 @@ export default {
 
             async DeleteKeep(keepId) {
                 try {
-                    if (await Pop.confirm('Are you sure?')) {
+                    if (await Pop.confirm('Are you sure you want to delete the keep?')) {
                         await keepsService.DeleteKeep(keepId)
                         Pop.success('The keep was deleted')
                     }
@@ -64,7 +64,7 @@ export default {
 
             async RemoveFromVault(vaultKeepId) {
                 try {
-                    if (await Pop.confirm('Are you sure?')) {
+                    if (await Pop.confirm('Are you sure you want to remove the keep from the vault?')) {
                         await vaultKeepsService.RemoveFromVault(vaultKeepId)
                         Pop.success("Successfully removed the keep from your vault.")
                     }

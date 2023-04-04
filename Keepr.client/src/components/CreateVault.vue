@@ -47,6 +47,7 @@ export default {
             async CreateVault() {
                 try {
                     await vaultsService.CreateVault(editable.value)
+                    Pop.success("Creating Vault was successful!")
                     editable.value = {isPrivate: false}
                 } catch (error) {
                     Pop.error(error, '[Creating Vault]')

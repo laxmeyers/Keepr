@@ -39,6 +39,7 @@ export default {
             async CreateKeep() {
                 try {
                     await keepsService.CreateKeep(editable.value)
+                    Pop.success("Creating Keep was successful!")
                     editable.value = {}
                 } catch (error) {
                     Pop.error(error, '[creating keep]')
