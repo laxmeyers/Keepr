@@ -9,15 +9,15 @@
       <form class="col-lg-5 m-auto" @click="EditAccount()">
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Name</label>
-          <input v-model="editable.name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <input maxlength=255 v-model="editable.name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Picture</label>
-          <input v-model="editable.picture" type="text" class="form-control" id="exampleInputPassword1">
+          <input maxlength=255 v-model="editable.picture" type="text" class="form-control" id="exampleInputPassword1">
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Cover Image</label>
-          <input v-model="editable.coverImg" type="text" class="form-control" id="exampleInputPassword1">
+          <input maxlength=255 v-model="editable.coverImg" type="text" class="form-control" id="exampleInputPassword1">
         </div>
         <div class="text-end">
           <button type="submit" class="btn btn-primary">Save changes</button>
