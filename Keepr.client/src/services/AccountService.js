@@ -18,6 +18,11 @@ class AccountService {
     logger.log(res.data)
     AppState.profile = res.data
   }
+
+  async EditAccount(accountData) {
+    const res = await api.put('account', accountData)
+    logger.log(res.data)
+  }
 }
 
 export const accountService = new AccountService()
