@@ -30,7 +30,7 @@
 
 
 <script>
-import { computed, onMounted, popScopeId, watchEffect } from 'vue';
+import { computed, onMounted, onUnmounted, popScopeId, watchEffect } from 'vue';
 import { AppState } from '../AppState';
 import { useRoute, useRouter } from 'vue-router';
 import Pop from '../utils/Pop';
@@ -65,6 +65,9 @@ export default {
                 GetVault();
                 GetKeeps();
             }
+        })
+        onUnmounted(() => {
+            AppState.activeVault = {}
         })
         return {
             vault: computed(() => AppState.activeVault),

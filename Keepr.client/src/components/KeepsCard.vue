@@ -14,7 +14,7 @@
             class="position-absolute delete-button bg-danger rounded-circle text-center selectable" title="delete keep" @click="DeleteKeep(keep.id)">
             <i class="mdi mdi-close"></i>
         </div>
-        <div v-else-if="keep.vaultKeepId"
+        <div v-else-if="keep.vaultKeepId && account.id == activeVault.creatorId"
             class="position-absolute delete-button bg-danger rounded-circle text-center selectable" title="Remove from Vault" @click="RemoveFromVault(keep?.vaultKeepId)">
             <i class="mdi mdi-close"></i>
         </div>
@@ -42,6 +42,7 @@ export default {
     setup() {
         return {
             account: computed(() => AppState.account),
+            activeVault: computed(() => AppState.activeVault),
             async ActiveKeep(keepId) {
                 try {
                     await keepsService.ActiveKeep(keepId)
