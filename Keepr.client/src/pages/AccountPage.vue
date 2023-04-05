@@ -15,7 +15,7 @@
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Picture</label>
-          <input required maxlength=255 v-model="editable.picture" type="text" class="form-control" id="exampleInputPassword1">
+          <input required maxlength=255 v-model="editable.picture" type="url" class="form-control" id="exampleInputPassword1">
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Cover Image</label>

@@ -10,7 +10,7 @@
                 <label for="floatingInput">Title</label>
             </div>
             <div class="form-floating">
-                <input maxlength=255 v-model="editable.img" type="text" class="form-control" id="floatingPassword" placeholder="image" required>
+                <input maxlength=255 v-model="editable.img" type="url" class="form-control" id="floatingPassword" placeholder="image" required>
                 <label for="floatingPassword">Image URL</label>
             </div>
             <div class="form-floating mt-3">
